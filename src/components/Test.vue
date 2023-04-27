@@ -4,6 +4,11 @@
     <Transition name="hello" appear>
       <h1 v-show="isShow">你好啊</h1>
     </Transition>
+
+    <Transition-group name="hello" appear>
+      <h1 v-show="isShow" key="1">你好啊</h1>
+      <h1 v-show="isShow" key="2">第二个h1</h1>
+    </Transition-group>
   </div>
 </template>
 
@@ -22,22 +27,34 @@
 <style scoped>
 h1{
   background-color: orange;
+
 }
 
-.hello-enter-active{
-  animation: mediaLearn 1s ;
+/* 单独的transition */
+/* 进入的起点 */
+.hello-enter{
+  transform: translateX(-100%)
 }
 
-.hello-leave-active{
-  animation: mediaLearn 1s reverse ;
+/* 进入的终点 */
+.hello-enter-to{
+  transform: translateX(0)
 }
 
-@keyframes mediaLearn {
-  from{
-    transform: translateX(-100%);
-  }
-  to{
-    transform: translateX(0px);
-  }
+/* 离开的终点 */
+.hello-leave-to{
+  transform: translateX(-100%)
 }
+
+/* 离开的起点 */
+.hello-leave{
+  transform: translateX(0)
+}
+
+.hello-enter-active, .hello-leave-active{
+  transition: 0.5s linear;
+}
+
+
+/* transition-group */
 </style>
